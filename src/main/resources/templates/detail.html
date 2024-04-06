@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 상세 보기</title>
+    <link th:href="@{/detail.css}" rel="stylesheet"  />
+</head>
+<body>
+<div class="container">
+    <h1>글 상세 보기</h1>
+    <div>
+        <label>ID:</label>
+        <span th:text="${board.id}"></span>
+    </div>
+    <div>
+        <label>작성자:</label>
+        <span th:text="${board.name}"></span>
+    </div>
+    <div>
+        <label>제목:</label>
+        <span th:text="${board.title}"></span>
+    </div>
+    <div>
+        <label>내용:</label>
+        <br>
+        <textarea readonly th:text="${board.content}"></textarea>
+    </div>
+    <div>
+        <label>작성일자:</label>
+        <span th:text="${board.created}"></span>
+    </div>
+    <div class="btn-group">
+        <a th:href="@{'/edit/' + ${board.id}}" class="btn">수정</a>
+        <a th:href="@{'/delete/' + ${board.id}}" class="btn">삭제</a>
+        <a href="/list" class="btn">목록으로 돌아가기</a>
+    </div>
+</div>
+</body>
+</html>

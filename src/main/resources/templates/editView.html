@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글 수정</title>
+    <link th:href="@{/editview.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>글 수정해보기</h1>
+    <form action="/editView" method="post">
+        <input type="hidden" id = "id" name="id" th:value="${board.id}" />
+        <input type="hidden" id = "name" name="name" th:value="${board.name}" />
+        <label for="title">제목:</label><br>
+        <input type="text" id="title" name="title" th:value="${board.title}" /><br>
+        <label for="content">내용:</label><br>
+        <textarea id="content" name="content"  th:text="${board.content}"></textarea><br>
+        <label for="password">비밀번호:</label><br>
+        <input type="text" id="password" name="password"/><br>
+        <div class="button-group">
+            <input type="submit" value="글 등록" class="button">
+            <a th:href="@{'/detail/' + ${board.id}}" class="button" >취소</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

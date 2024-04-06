@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board Page</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <img src="/images/Panda.png" width="500">
+    <h1>Welcome to Our Board Page</h1>
+    <p>Explore and share your thoughts!</p>
+    <a th:href="@{/login}" class="button">로그인</a>
+    <a th:href="@{/register}" class="button">회원가입</a>
+    <a th:href="@{/list}" class ="button">리스트</a>
+</div>
+</body>
+</html>
