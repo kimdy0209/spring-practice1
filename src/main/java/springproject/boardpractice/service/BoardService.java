@@ -2,8 +2,12 @@ package springproject.boardpractice.service;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import springproject.boardpractice.domain.Board;
+import springproject.boardpractice.domain.Member;
 import springproject.boardpractice.repository.BoardRepository;
 
 import java.util.Date;
@@ -23,6 +27,11 @@ public class BoardService {
             bro.save(board);
             return true;
         }else return false;
+    }
+
+    public Page<Board> getList(int page){
+        Pageable pageable = PageRequest.of(page,5);
+        return this.bro.findAll(pageable);
     }
 
 

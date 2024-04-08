@@ -7,14 +7,12 @@ import springproject.boardpractice.domain.Member;
 @Data
 public class MemberDTO {
 
-    private Long id;
     private String name;
     private String address;
     private String email;
     private String phone;
 
-    public MemberDTO(Long id, String name, String address, String email, String phone) {
-        this.id = id;
+    public MemberDTO(String name, String address, String email, String phone) {
         this.name = name;
         this.address = address;
         this.email = email;
@@ -23,7 +21,6 @@ public class MemberDTO {
 
     public static MemberDTO from(Member member) {
         return new MemberDTO(
-                member.getId(),
                 member.getName(),
                 member.getEmail(),
                 member.getAddress(),

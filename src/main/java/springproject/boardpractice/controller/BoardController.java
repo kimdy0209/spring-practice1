@@ -1,5 +1,6 @@
 package springproject.boardpractice.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,14 @@ public class BoardController {
     }
 
     @GetMapping("/list")
-    public String showList(Model model) {
-        List<Board> boards = new ArrayList<>();
+    public String showList(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
+        Page<Board> paging = this.bs.getList(page);
+        model.addAttribute("paging",paging);
+        return "list";
+        /*List<Board> boards = new ArrayList<>();
         bro.findAll().forEach(a -> boards.add(a));
         model.addAttribute("board", boards);
-        return "list";
+        return "list";*/
     }
     @GetMapping("/write")
     public String showWriteForm(){
