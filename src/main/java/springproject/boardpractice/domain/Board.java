@@ -20,10 +20,7 @@ public class Board {
     private String password;
     private String title;
     private String content;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @PrePersist
-    void createdAt(){
-        this.created = new Date();
-    }
 
 }

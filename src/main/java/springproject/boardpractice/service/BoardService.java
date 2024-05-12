@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import springproject.boardpractice.domain.Board;
 import springproject.boardpractice.domain.Member;
@@ -30,8 +31,23 @@ public class BoardService {
     }
 
     public Page<Board> getList(int page){
-        Pageable pageable = PageRequest.of(page,5);
+        Sort sort = Sort.by(Sort.Direction.DESC, "created");
+        Pageable pageable = PageRequest.of(page,5, sort);
         return this.bro.findAll(pageable);
+    }
+
+    public void saveAll(Board board){
+        board.setCreated(new Date());
+        bro.save(board);
+    }
+
+    public Board findId(Long postId){
+        Board board = bro.findById(postId).get();
+        return board;
+    }
+
+    public void deleteId(Long postId){
+        bro.deleteById(postId);
     }
 
 

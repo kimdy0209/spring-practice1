@@ -1,5 +1,6 @@
 package springproject.boardpractice.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +13,8 @@ import java.util.*;
 
 @Controller
 public class BoardController {
-
-    private final BoardRepository bro;
-    private final BoardService bs;
-    public BoardController(BoardRepository bro,BoardService bs) {
-        this.bs = bs;
-        this.bro = bro;
-    }
+    @Autowired
+    private BoardService bs;
 
     @GetMapping("/list")
     public String showList(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
@@ -37,7 +33,7 @@ public class BoardController {
 
     @PostMapping("/write")
     public String createBoard(Board bf){
-        bro.save(bf);
+        bs.saveAll(bf);
         return "redirect:/list";
     }
 
@@ -45,9 +41,7 @@ public class BoardController {
     public String editBoard(@PathVariable Long postId, Model model){
         //
 
-        Board board = bro.findById(postId).get();
-
-
+        Board board = bs.findId(postId);
         model.addAttribute("board",board);
         return "editView";
     }
@@ -80,13 +74,13 @@ public class BoardController {
 
     @GetMapping("/delete/{postId}")
     public String deleteBoard(@PathVariable Long postId){
-        bro.deleteById(postId);
+        bs.deleteId(postId);
         return "redirect:/list";}
 
 
     @GetMapping("/detail/{postId}")
     public String detailBoard(@PathVariable Long postId, Model model){
-        Board board = bro.findById(postId).get();
+        Board board = bs.findId(postId);
         model.addAttribute("board",board);
         return "detail";
     }

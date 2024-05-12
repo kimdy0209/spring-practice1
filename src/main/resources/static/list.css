@@ -25,12 +25,14 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    table-layout: fixed; /* 테이블 레이아웃을 고정합니다. */
 }
 
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: left;
+    width: 20%; /* 각 셀의 너비를 고정합니다. */
 }
 
 th {
